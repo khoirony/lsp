@@ -2,7 +2,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800"><i class="fas fa-fw fa-tasks"></i> Formulir Pendaftaran Sertifikasi PSKK BNSP 2022</h1>
+    <h1 class="h3 mb-4 text-gray-800"><i class="fas fa-fw fa-tasks"></i> Edit Formulir Pendaftaran Sertikom DIKSI Kemendikbud 2022</h1>
     <br>
     <div class="container">
         <div class="row">
@@ -90,6 +90,7 @@
                     <div class="form-group text-start">
                         <p class="ms-3 mb-0">Skema Uji <small>(diisi sesuai skema yang telah ditentukan, lihat pengumuman)</small></p>
                         <select class="custom-select rounded-pill px-3" id="skema" name="skema">
+                            <option value="<?= $profesi['skema'];?>"><?= $profesi['skema'];?></option>
                             <option value="Filing">Filing</option>
                             <option value="Mail Handling">Mail Handling</option>
                             <option value="Pemasangan Instalasi Ketenagalistrikan">Pemasangan Instalasi Ketenagalistrikan</option>

@@ -20,10 +20,15 @@
 			<div class="sidebar-heading mt-3">
                 Menu Admin
             </div>
-            <li class="nav-item <?php if($active == 'mahasiswa'){ echo'active';}?>">
-        		<a class="nav-link pb-0" href="<?= base_url('admin/mahasiswa') ?>">
-                <i class="fas fa-fw fa-user-cog"></i>
-        			<span>Manage Mahasiswa</a>
+            <li class="nav-item <?php if($active == 'kompetensi'){ echo'active';}?>">
+        		<a class="nav-link pb-0" href="<?= base_url('admin/kompetensi') ?>">
+                <i class="fas fa-fw fa-tasks"></i>
+        			<span>Manage Kompetensi</a>
+        	</li>
+			<li class="nav-item <?php if($active == 'profesi'){ echo'active';}?>">
+        		<a class="nav-link pb-0" href="<?= base_url('admin/profesi') ?>">
+                <i class="fas fa-fw fa-tasks"></i>
+        			<span>Manage Profesi</a>
         	</li>
 			<li class="nav-item <?php if($active == 'jurusan'){ echo'active';}?>">
         		<a class="nav-link pb-0" href="<?= base_url('admin/jurusan') ?>">
@@ -45,7 +50,7 @@
 
             <?php if($user['role'] == 3): ?>
 			<div class="sidebar-heading mt-3">
-                Sertifikasi
+                Pendaftaran Sertifikasi
             </div>
             <li class="nav-item <?php if($active == 'kompetensi'){ echo'active';}?>">
         		<a class="nav-link pb-0" href="<?= base_url('mahasiswa/kompetensi') ?>">

@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-6 text-center">
                 <form class="user" method="POST" action="">
-                <div class="form-group text-start">
+                    <div class="form-group text-start">
                         <p class="ms-3 mb-0">Email</p>
                         <input type="text" class="form-control form-control-user" id="email" name="email" value="<?= $user['email'];?>" readonly>
                         <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -22,67 +22,85 @@
     
                     <div class="form-group text-start">
                         <p class="ms-3 mb-0">NIK (No. KTP)</p>
-                        <input type="text" class="form-control form-control-user" id="nik" name="nik">
+                        <input type="text" class="form-control form-control-user" id="nik" name="nik" value="<?= $user['nik'];?>" readonly>
                         <?= form_error('nik', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
     
                     <div class="form-group text-start">
                         <p class="ms-3 mb-0">Tempat Lahir</p>
-                        <input type="text" class="form-control form-control-user" id="tempat_lahir" name="tempat_lahir">
+                        <input type="text" class="form-control form-control-user" id="tempat_lahir" name="tempat_lahir" value="<?= $user['tempat_lahir'];?>" readonly>
                         <?= form_error('tempat_lahir', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
     
                     <div class="form-group text-start">
                         <p class="ms-3 mb-0">Tanggal lahir</p>
-                        <input type="date" class="form-control form-control-user" id="tgl_lahir" name="tgl_lahir">
+                        <input type="date" class="form-control form-control-user" id="tgl_lahir" name="tgl_lahir" value="<?= $user['tgl_lahir'];?>" readonly>
                         <?= form_error('tgl_lahir', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
     
-                    <div class="form-group text-start">
-                        <p class="ms-3 mb-0">Jenis Kelamin</p>
-                        <input type="text" class="form-control form-control-user" id="jk" name="jk">
-                        <?= form_error('jk', '<small class="text-danger pl-3">', '</small>'); ?>
+                    <div class="mb-3 ps-4 text-start">
+                        <p class="mb-2">Jenis Kelamin</p>
+
+                        <input class="form-check-input" type="radio" name="jk" id="jk" value="Laki-Laki" <?php if($user['jk'] == 'Laki-Laki'){ echo 'checked';} ?>>
+                        <label class="form-check-label me-5" for="jk">
+                            Laki-laki
+                        </label>
+                        <input class="form-check-input" type="radio" name="jk" id="jk" value="Perempuan" <?php if($user['jk'] == 'Perempuan'){ echo 'checked';} ?>>
+                        <label class="form-check-label" for="jk">
+                            Perempuan
+                        </label>
                     </div>
     
                     <div class="form-group text-start">
                         <p class="ms-3 mb-0">Alamat Rumah <small>(Jln/No/RT/RW/Kelurahan/Kecamatan/Kota/Provinsi)</small></p>
-                        <input type="text" class="form-control form-control-user" id="alamat" name="alamat">
+                        <input type="text" class="form-control form-control-user" id="alamat" name="alamat" value="<?= $user['alamat'];?>" readonly>
                         <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
     
                     <div class="form-group text-start">
                         <p class="ms-3 mb-0">No. Telp/HP</p>
-                        <input type="text" class="form-control form-control-user" id="no_telp" name="no_telp">
+                        <input type="text" class="form-control form-control-user" id="no_telp" name="no_telp" value="<?= $user['no_telp'];?>" readonly>
                         <?= form_error('no_telp', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
     
                     <div class="form-group text-start">
                         <p class="ms-3 mb-0">NIM</p>
-                        <input type="text" class="form-control form-control-user" id="nim" name="nim">
+                        <input type="text" class="form-control form-control-user" id="nim" name="nim" value="<?= $user['nim'];?>" readonly>
                         <?= form_error('nim', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
     
                     <div class="form-group text-start">
                         <p class="ms-3 mb-0">Jurusan</p>
-                        <input type="text" class="form-control form-control-user" id="jurusan" name="jurusan">
+                        <input type="text" class="form-control form-control-user" id="jurusan" name="jurusan" value="<?= $user['jurusan'];?>" readonly>
                         <?= form_error('jurusan', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
     
                     <div class="form-group text-start">
                         <p class="ms-3 mb-0">Program Studi</p>
-                        <input type="text" class="form-control form-control-user" id="prodi" name="prodi">
+                        <input type="text" class="form-control form-control-user" id="prodi" name="prodi" value="<?= $user['prodi'];?>" readonly>
                         <?= form_error('prodi', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
     
                     <div class="form-group text-start">
                         <p class="ms-3 mb-0">Semester</p>
-                        <input type="text" class="form-control form-control-user" id="semester" name="semester">
+                        <input type="text" class="form-control form-control-user" id="semester" name="semester" value="<?= $user['semester'];?>" readonly>
                         <?= form_error('semester', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
     
                     <div class="form-group text-start">
                         <p class="ms-3 mb-0">Skema Uji <small>(diisi sesuai skema yang telah ditentukan, lihat pengumuman)</small></p>
-                        <input type="text" class="form-control form-control-user" id="skema" name="skema">
+                        <select class="custom-select rounded-pill px-3" id="skema" name="skema">
+                            <option value="Tenaga Pemasar Operasional Penjualan">Tenaga Pemasar Operasional Penjualan</option>
+                            <option value="Pengawas Pekerjaan Struktur Bangunan Gedung">Pengawas Pekerjaan Struktur Bangunan Gedung</option>
+                            <option value="Juru Gambar Pekerjaan Jalan dan Jembatan">Juru Gambar Pekerjaan Jalan dan Jembatan</option>
+                            <option value="Teknisi Laboratorium Beton Aspal">Teknisi Laboratorium Beton Aspal</option>
+                            <option value="Teknisi Pemeliharaan Sistem Scada">Teknisi Pemeliharaan Sistem Scada</option>
+                            <option value="Teknisi Instrumentasi">Teknisi Instrumentasi</option>
+                            <option value="Teknisi Madya Jaringan Komputer">Teknisi Madya Jaringan Komputer</option>
+                            <option value="Teknisi Muda Jaringan Komputer">Teknisi Muda Jaringan Komputer</option>
+                            <option value="Teknisi Instalasi Fiber Optik">Teknisi Instalasi Fiber Optik</option>
+                            <option value="RF Planer">RF Planer</option>
+                        </select>
                         <?= form_error('skema', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
     

@@ -24,7 +24,13 @@
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="#">
+                        <?php if($user['role'] == 1): ?>
+                            <a href="<?= base_url('admin/profile'); ?>" class="dropdown-item">
+                        <?php elseif($user['role'] == 2): ?>
+                            <a href="<?= base_url('jurusan/profile'); ?>" class="dropdown-item">
+                        <?php elseif($user['role'] == 3): ?>
+                            <a href="<?= base_url('mahasiswa/profile'); ?>" class="dropdown-item">
+                        <?php endif; ?>
                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                             My Profile
                         </a>
