@@ -25,26 +25,3 @@
 </head>
 
 <body>
-<!-- <nav class="navbar navbar-expand-lg navbar-dark text-white bg-secondary shadow">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav mx-auto">
-        <li class="nav-item">
-          <a class="nav-link me-3 text-white" href="<?= base_url('/');?>">HOME</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link me-3 text-white" href="<?= base_url('auth/profile');?>">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link me-3 text-white" href="<?= base_url('auth/bidang');?>">Data Bidang Tanah</a>
-        </li>
-		    <li class="nav-item">
-          <a class="nav-link me-3 text-white" href="<?= base_url('auth/kegiatan');?>">Data Kegiatan</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav> -->

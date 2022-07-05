@@ -7,45 +7,45 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-center">
-                <form class="user" method="POST" action="" enctype="multipart/form-data">
+                <form class="user" method="POST" action="">
                 <div class="form-group text-start">
                         <p class="ms-3 mb-0">Email</p>
-                        <input type="text" class="form-control form-control-user" id="email" name="email" value="<?= $user['email'];?>" readonly>
+                        <input type="text" class="form-control form-control-user" id="email" name="email" value="<?= $kompetensi['email'];?>" readonly>
                         <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
     
                     <div class="form-group text-start">
                         <p class="ms-3 mb-0">Nama Lengkap</p>
-                        <input type="text" class="form-control form-control-user" id="nama" name="nama" value="<?= $user['nama'];?>" readonly>
+                        <input type="text" class="form-control form-control-user" id="nama" name="nama" value="<?= $kompetensi['nama'];?>" readonly>
                         <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
     
                     <div class="form-group text-start">
                         <p class="ms-3 mb-0">NIK (No. KTP)</p>
-                        <input type="text" class="form-control form-control-user" id="nik" name="nik" value="<?= $user['nik'];?>" readonly>
+                        <input type="text" class="form-control form-control-user" id="nik" name="nik" value="<?= $kompetensi['nik'];?>">
                         <?= form_error('nik', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
     
                     <div class="form-group text-start">
                         <p class="ms-3 mb-0">Tempat Lahir</p>
-                        <input type="text" class="form-control form-control-user" id="tempat_lahir" name="tempat_lahir" value="<?= $user['tempat_lahir'];?>" readonly>
+                        <input type="text" class="form-control form-control-user" id="tempat_lahir" name="tempat_lahir" value="<?= $kompetensi['tempat_lahir'];?>">
                         <?= form_error('tempat_lahir', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
     
                     <div class="form-group text-start">
                         <p class="ms-3 mb-0">Tanggal lahir</p>
-                        <input type="date" class="form-control form-control-user" id="tgl_lahir" name="tgl_lahir" value="<?= $user['tgl_lahir'];?>" readonly>
+                        <input type="date" class="form-control form-control-user" id="tgl_lahir" name="tgl_lahir" value="<?= $kompetensi['tgl_lahir'];?>">
                         <?= form_error('tgl_lahir', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
     
                     <div class="mb-3 ps-4 text-start">
                         <p class="mb-2">Jenis Kelamin</p>
 
-                        <input class="form-check-input" type="radio" name="jk" id="jk" value="Laki-Laki" <?php if($user['jk'] == 'Laki-Laki'){ echo 'checked';} ?>>
+                        <input class="form-check-input" type="radio" name="jk" id="jk" value="Laki-Laki" <?php if($kompetensi['jk'] == 'Laki-Laki'){ echo 'checked';} ?>>
                         <label class="form-check-label me-5" for="jk">
                             Laki-laki
                         </label>
-                        <input class="form-check-input" type="radio" name="jk" id="jk" value="Perempuan" <?php if($user['jk'] == 'Perempuan'){ echo 'checked';} ?>>
+                        <input class="form-check-input" type="radio" name="jk" id="jk" value="Perempuan" <?php if($kompetensi['jk'] == 'Perempuan'){ echo 'checked';} ?>>
                         <label class="form-check-label" for="jk">
                             Perempuan
                         </label>
@@ -53,37 +53,46 @@
     
                     <div class="form-group text-start">
                         <p class="ms-3 mb-0">Alamat Rumah <small>(Jln/No/RT/RW/Kelurahan/Kecamatan/Kota/Provinsi)</small></p>
-                        <input type="text" class="form-control form-control-user" id="alamat" name="alamat" value="<?= $user['alamat'];?>" readonly>
+                        <input type="text" class="form-control form-control-user" id="alamat" name="alamat" value="<?= $kompetensi['alamat'];?>">
                         <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
     
                     <div class="form-group text-start">
                         <p class="ms-3 mb-0">No. Telp/HP</p>
-                        <input type="text" class="form-control form-control-user" id="no_telp" name="no_telp" value="<?= $user['no_telp'];?>" readonly>
+                        <input type="text" class="form-control form-control-user" id="no_telp" name="no_telp" value="<?= $kompetensi['no_telp'];?>">
                         <?= form_error('no_telp', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
     
                     <div class="form-group text-start">
                         <p class="ms-3 mb-0">NIM</p>
-                        <input type="text" class="form-control form-control-user" id="nim" name="nim" value="<?= $user['nim'];?>" readonly>
+                        <input type="text" class="form-control form-control-user" id="nim" name="nim" value="<?= $kompetensi['nim'];?>">
                         <?= form_error('nim', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
     
                     <div class="form-group text-start">
                         <p class="ms-3 mb-0">Jurusan</p>
-                        <input type="text" class="form-control form-control-user" id="jurusan" name="jurusan" value="<?= $user['jurusan'];?>" readonly>
+                        <select class="custom-select rounded-pill px-3" id="jurusan" name="jurusan">
+                            <option value="<?= $kompetensi['jurusan'];?>"><?= $kompetensi['jurusan'];?></option>
+                            <option value="Teknik Sipil">Teknik Sipil</option>
+                            <option value="Teknik Mesin">Teknik Mesin</option>
+                            <option value="Teknik Elektro">Teknik Elektro</option>
+                            <option value="Akuntansi">Akuntansi</option>
+                            <option value="Administrasi Niaga">Administrasi Niaga</option>
+                            <option value="Teknik Grafika Penerbitan">Teknik Grafika Penerbitan</option>
+                            <option value="Teknik Informatika dan Komputer">Teknik Informatika dan Komputer</option>
+                        </select>
                         <?= form_error('jurusan', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
     
                     <div class="form-group text-start">
                         <p class="ms-3 mb-0">Program Studi</p>
-                        <input type="text" class="form-control form-control-user" id="prodi" name="prodi" value="<?= $user['prodi'];?>" readonly>
+                        <input type="text" class="form-control form-control-user" id="prodi" name="prodi" value="<?= $kompetensi['prodi'];?>">
                         <?= form_error('prodi', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
     
                     <div class="form-group text-start">
                         <p class="ms-3 mb-0">Semester</p>
-                        <input type="text" class="form-control form-control-user" id="semester" name="semester" value="<?= $user['semester'];?>" readonly>
+                        <input type="text" class="form-control form-control-user" id="semester" name="semester" value="<?= $kompetensi['semester'];?>">
                         <?= form_error('semester', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
     
@@ -98,11 +107,6 @@
                         </select>
                         <?= form_error('skema', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
-
-                    <div class="form-group text-start">
-                        <label class="form-label ml-3">Upload KTP <small>(bagian NIK, nama, alamat, dll harus terlihat jelas)</small></label>
-                        <input type="file" id="image" name="image" class="form-control rounded-pill">
-                    </div>
     
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary btn-user px-5 mt-3">
@@ -113,42 +117,7 @@
                 <br>
             </div>
             <div class="col-md-6 ps-4">
-            Persyaratan Peserta: <br>
-
-            a.	Mengisi formulir pendaftaran sertifikasi kompetensi  <br>
-            b.  Mengisi dan menandatangani form APL 01 dan APL 02 sesuai Skema yang telah ditentukan (Form dapat didownload di web lsp.pnj.ac.id pada menu download <br>
-            c.  Menyiapkan berkas persyaratan: <br>
-                <ul>
-                    <li>Foto kopi Marksheet semester 1 sd. terakhir</li>
-                    <li>Foto kopi lembar pengesahan Laporan PKL bila telah melaksanakan PKL</li>
-                    <li>Foto kopi Sertifikat Pelatihan dan Tugas Kliiah yang mendukung skema yang diujikan</li>
-                    <li>Foto kopi KTP</li>
-                    <li>Foto berwarna Ukuran 3 x 4 cm sebanyak 1 lembar</li>
-                    <li>CV/Daftar Riwayat Hidupi</li>
-                </ul>
-            <br>
-            Semua berkas (point b dan c) dibawa pada saat pelaksanaan dan dimasukkan dalam map diberi nama peserta dan Judul Skema, dengan ketentuan warna map: <br>
-
-            <ul>
-                <li>Merah (Administrasi Bisnis)</li>
-                <li>Biru (Teknik Sipil)</li>
-                <li>Kuning (Teknik Elektro)</li>
-                <li>Hijau (Teknik Mesin)</li>
-            </ul>
-            <br>
-
-            •	Hadir sesuai jadwal pembekalan/uji kompetensi (pukul 8.00 WIB) Pakaian kemeja putih dan rok/celana hitam dan Baju Lab/Bengkel/Praktek.  Tempat Uji Kompetensi di Jurusan masing-masing. <br><br>
-
-            Mengikuti Konsultasi Pra Asesmen/panduan pengisian APL 01 dan APL 02 melalui media Zoom 
-            (jadwal menyusul diinformasikan melalui WA Group Uji Kompetensi) <br>
-
-            Peserta pembekalan/uji kompetensi tidak dikenakan biaya. <br>
-
-            Peserta yang dinyatakan Kompeten wajib membawa foto 3x4 pada saat pengambilan sertifikat <br>
-
-            Untuk update informasi pelaksanaan Uji Kompetensi, peserta diharapkan bergabung dalam Whatsapp Group pada link https://bit.ly/WAG_UJIKOMPSKK_DIKSI.  <br>
-
-            Infomasi lebih lanjut dapat menghubungi Sekretariat LSP melalui No. WA 088292230466.
+            
             </div>
     
         </div>

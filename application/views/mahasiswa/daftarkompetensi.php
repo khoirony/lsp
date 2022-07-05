@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-center">
-                <form class="user" method="POST" action="">
+                <form class="user" method="POST" action="" enctype="multipart/form-data">
                 <div class="form-group text-start">
                         <p class="ms-3 mb-0">Email</p>
                         <input type="text" class="form-control form-control-user" id="email" name="email" value="<?= $user['email'];?>" readonly>
@@ -96,6 +96,11 @@
                             <option value="Pemasangan Sistem Otomasi Industri Non PLC">Pemasangan Sistem Otomasi Industri Non PLC</option>
                         </select>
                         <?= form_error('skema', '<small class="text-danger pl-3">', '</small>'); ?>
+                    </div>
+
+                    <div class="form-group text-start">
+                        <label class="form-label ml-3">Upload KTP <small>(bagian NIK, nama, alamat, dll harus terlihat jelas)</small></label>
+                        <input type="file" id="image" name="image" class="form-control rounded-pill">
                     </div>
     
                     <div class="text-center">
