@@ -71,7 +71,16 @@
     
                     <div class="form-group text-start">
                         <p class="ms-3 mb-0">Jurusan</p>
-                        <input type="text" class="form-control form-control-user" id="jurusan" name="jurusan" value="<?= $user['jurusan'];?>">
+                        <select class="custom-select rounded-pill px-3" id="jurusan" name="jurusan">
+                            <option value="<?= $user['jurusan'];?>"><?= $user['jurusan'];?></option>
+                            <option value="Teknik Sipil">Teknik Sipil</option>
+                            <option value="Teknik Mesin">Teknik Mesin</option>
+                            <option value="Teknik Elektro">Teknik Elektro</option>
+                            <option value="Akuntansi">Akuntansi</option>
+                            <option value="Administrasi Niaga">Administrasi Niaga</option>
+                            <option value="Teknik Grafika Penerbitan">Teknik Grafika Penerbitan</option>
+                            <option value="Teknik Informatika dan Komputer">Teknik Informatika dan Komputer</option>
+                        </select>
                         <?= form_error('jurusan', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
     

@@ -2,13 +2,13 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800"><i class="fas fa-fw fa-tasks"></i> <?= $title; ?></h1>
+    <h1 class="h3 mb-4 text-gray-800"><i class="fas fa-fw fa-tasks"></i> Hasil Pencarian Dari: <?= $text; ?></h1>
 	<br>
 	<div class="mr-3 mb-2">
         <div class="row">
             <div class="col ps-3">
                 <div class="border border-primary rounded-pill bg-white p-1" style="width: 19em;">
-                    <form class="d-inline-flex ms-3" method="POST" action="<?= base_url('Admin/cariprofesi'); ?>">
+                    <form class="d-inline-flex ms-3" method="POST" action="<?= base_url('Jurusan/cariprofesi'); ?>">
                         <input type="text" class="border-0" id="cari" name="cari" placeholder="Masukkan nama..">
                         <button type="submit" class="btn btn-primary rounded-pill ps-3 pe-3 ms-4">
                             Cari
@@ -32,13 +32,12 @@
 					<th scope="col">Prodi</th>
 					<th scope="col">Skema</th>
                     <th scope="col">status</th>
-					<th scope="col">aksi</th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php
 				$no = 1;
-				foreach ($profesi as $pro) {
+				foreach ($cari as $pro) {
 				?>
 				<tr>
 					<th scope="row"><?= $no++; ?></th>
@@ -56,10 +55,6 @@
 						<?php elseif($pro['status'] == 2): ?>
 							<span class="badge bg-danger">canceled</span>
 						<?php endif; ?>
-                    </td>
-					<td class="text-center" style="width:90px;">
-						<a href="<?= base_url('Admin/setujuprofesi/' . $pro['id_user']); ?>"><i class="fas fa-check-square text-success fs-3"></i></a>
-						<a href="<?= base_url('Admin/batalprofesi/' . $pro['id_user']); ?>"><i class="fas fa-window-close text-danger fs-3"></i></a>
                     </td>
 				</tr>
 				<?php

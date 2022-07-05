@@ -3,7 +3,8 @@
 
         	<!-- Sidebar - Brand -->
         	<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        		<span class="sidebar-brand-text">Sertifikasi LSP</span>
+				<img src="<?= base_url('assets/img/logo.png');?>" alt="logo" class="w-25 me-1">
+        		<span class="sidebar-brand-text"> SERTIFIKASI PROFESI PNJ</span>
         	</a>
 
         	<!-- Divider -->
@@ -41,10 +42,15 @@
 			<div class="sidebar-heading mt-3">
                 Menu Jurusan
             </div>
-            <li class="nav-item <?php if($active == 'manage'){ echo'active';}?>">
-        		<a class="nav-link pb-0" href="<?= base_url('jurusan/data') ?>">
-                <i class="fas fa-fw fa-user-friends"></i>
-        			<span>Data Mahasiwa</a>
+            <li class="nav-item <?php if($active == 'kompetensi'){ echo'active';}?>">
+        		<a class="nav-link pb-0" href="<?= base_url('jurusan/kompetensi') ?>">
+                <i class="fas fa-fw fa-tasks"></i>
+        			<span>Data Kompetensi</a>
+        	</li>
+			<li class="nav-item <?php if($active == 'profesi'){ echo'active';}?>">
+        		<a class="nav-link pb-0" href="<?= base_url('jurusan/profesi') ?>">
+                <i class="fas fa-fw fa-tasks"></i>
+        			<span>Data Profesi</a>
         	</li>
             <?php endif; ?>
 

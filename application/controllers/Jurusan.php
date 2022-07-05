@@ -27,4 +27,88 @@ class Jurusan extends CI_Controller
         $this->load->view('jurusan/index', $data);
 		$this->load->view('templates/footer', $data);
     }
+
+	public function kompetensi()
+    {
+		if($this->session->userdata('role') == NULL){
+            redirect('auth');
+        }
+
+        $data['title'] = 'Data Kompetensi';
+		$data['active'] = 'kompetensi';
+		$user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $user;
+		$data['kompetensi'] = $this->db->get_where('kompetensi', ['jurusan' => $user['nama']])->result_array();
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/topbar', $data);
+        $this->load->view('jurusan/kompetensi', $data);
+		$this->load->view('templates/footer', $data);
+    }
+
+	public function carikompetensi()
+    {
+		if($this->session->userdata('role') == NULL){
+            redirect('auth');
+        }
+
+        $data['title'] = 'Cari Kompetensi';
+		$data['active'] = 'kompetensi';
+		$user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $user;
+
+		$query = "SELECT * FROM kompetensi where jurusan like '%".$user['nama']."%' AND nama like '%" . $this->input->post('cari') . "%'";
+        $data['cari'] = $this->db->query($query)->result_array();
+        $data['hitung'] = $this->db->query($query)->num_rows();
+        $data['text'] = $this->input->post('cari');
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/topbar', $data);
+        $this->load->view('jurusan/cari/kompetensi', $data);
+		$this->load->view('templates/footer', $data);
+    }
+
+	public function profesi()
+    {
+		if($this->session->userdata('role') == NULL){
+            redirect('auth');
+        }
+
+        $data['title'] = 'Data Profesi';
+		$data['active'] = 'profesi';
+		$user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $user;
+		$data['profesi'] = $this->db->get_where('profesi', ['jurusan' => $user['nama']])->result_array();
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/topbar', $data);
+        $this->load->view('jurusan/profesi', $data);
+		$this->load->view('templates/footer', $data);
+    }
+
+	public function cariprofesi()
+    {
+		if($this->session->userdata('role') == NULL){
+            redirect('auth');
+        }
+
+        $data['title'] = 'Cari Profesi';
+		$data['active'] = 'profesi';
+		$user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $user;
+		
+		$query = "SELECT * FROM profesi where jurusan like '%".$user['nama']."%' AND nama like '%" . $this->input->post('cari') . "%'";
+        $data['cari'] = $this->db->query($query)->result_array();
+        $data['hitung'] = $this->db->query($query)->num_rows();
+        $data['text'] = $this->input->post('cari');
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/topbar', $data);
+        $this->load->view('jurusan/cari/profesi', $data);
+		$this->load->view('templates/footer', $data);
+    }
 }

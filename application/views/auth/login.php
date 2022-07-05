@@ -7,6 +7,7 @@
 		<div class="col-lg-5 shadow-lg mt-5 rounded">
 			<div class="p-5">
 				<div class="text-center">
+					<img src="<?= base_url('assets/img/logo.png');?>" alt="logo" class="w-25">
 					<h3 class="text-center mb-0">Lembaga Sertifikasi Profesi</h3>
             		<h3 class="fw-normal text-center mb-4">Politeknik Negeri Jakarta</h3>
 				</div>

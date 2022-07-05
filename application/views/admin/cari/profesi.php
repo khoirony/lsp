@@ -2,7 +2,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800"><i class="fas fa-fw fa-tasks"></i> <?= $title; ?></h1>
+    <h1 class="h3 mb-4 text-gray-800"><i class="fas fa-fw fa-tasks"></i> Hasil Pencarian Dari: <?= $text; ?></h1>
 	<br>
 	<div class="mr-3 mb-2">
         <div class="row">
@@ -38,7 +38,7 @@
 			<tbody>
 				<?php
 				$no = 1;
-				foreach ($profesi as $pro) {
+				foreach ($cari as $pro) {
 				?>
 				<tr>
 					<th scope="row"><?= $no++; ?></th>
