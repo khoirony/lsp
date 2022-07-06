@@ -57,10 +57,9 @@
 							<span class="badge bg-danger">canceled</span>
 						<?php endif; ?>
                     </td>
-					<td class="text-center" style="width:130px;">
+					<td class="text-center" style="width:90px;">
 						<a href="<?= base_url('Admin/lihatprofesi/' . $pro['id_user']); ?>"><i class="fas fa-eye btn-sm btn-primary"></i></a>
-						<a href="<?= base_url('Admin/setujuprofesi/' . $pro['id_user']); ?>"><i class="fas fa-check btn-sm btn-success"></i></a>
-						<a href="<?= base_url('Admin/batalprofesi/' . $pro['id_user']); ?>"><i class="fas fa-times btn-sm btn-danger" style="padding-left:11px;padding-right:11px;"></i></a>
+						<a href="<?= base_url('Admin/hapusprofesi/' . $pro['id_user']); ?>"><i class="fas fa-trash btn-sm btn-danger"></i></a>
                     </td>
 				</tr>
 				<?php

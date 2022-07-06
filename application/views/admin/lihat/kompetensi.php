@@ -2,7 +2,7 @@
 <div class="container-fluid">
 
 	<!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800"><i class="fas fa-fw fa-tasks"></i> <?= $title; ?><a href="<?= base_url('admin/editkompetensi/'.$kompetensi['id_user']);?>" class="pb-2"><span class="badge bg-primary fs-6 ms-2">Edit</span></a><a href="<?= base_url('admin/hapuskompetensi/'.$kompetensi['id_user']);?>" class="pb-2"><span class="badge bg-danger fs-6 ms-2">Hapus</span></a></h1>
+    <h1 class="h3 mb-4 text-gray-800"><i class="fas fa-fw fa-tasks"></i> <?= $title; ?><a href="<?= base_url('admin/editkompetensi/'.$kompetensi['id_user']);?>" class="pb-2"><span class="badge bg-primary fs-6 ms-2">Edit</span></a> <a href="<?= base_url('Admin/setujukompetensi/' . $kompetensi['id_user']); ?>"><span class="badge bg-success fs-6">Setujui</span></a> <a href="<?= base_url('Admin/batalkompetensi/' . $kompetensi['id_user']); ?>"><span class="badge bg-danger fs-6">Tolak</span></a></h1>
         
     <div class="row">
         <div class="col">
@@ -115,7 +115,56 @@
                 <?php elseif($kompetensi['status'] == 0): ?>
                     <span class="display-1"><i class="fas fa-spinner text-primary"></i></span>
                 <?php endif; ?>
-                    
+                <br><br>
+
+                <div class="row justify-content-center mt-5">
+                    <div class="col-5">
+                        Foto KTP<br>
+                        <?php if($kompetensi['image'] != null): ?>
+                            <img src="<?= base_url('assets/img/kompetensi/' . $kompetensi['image']); ?>" class="w-50" alt="image" type="button" data-bs-toggle="modal" data-bs-target="#fotoktp">
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="fotoktp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body mx-auto">
+                                        <img src="<?= base_url('assets/img/kompetensi/' . $kompetensi['image']); ?>" alt="image" class="w-50">
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php else: ?>
+                            belum diupload
+                        <?php endif; ?>
+                        
+                    </div>
+                    <div class="col-5">
+                        Sertifikasi Non-LSP<br>
+                        <?php if($mahasiswa['nonlsp'] != null):?>
+                            <img src="<?= base_url('assets/img/nonlsp/' . $mahasiswa['nonlsp']); ?>" class="w-50" alt="nonlsp" type="button" data-bs-toggle="modal" data-bs-target="#nonlsp">
+    
+                            <!-- Modal -->
+                            <div class="modal fade" id="nonlsp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body mx-auto">
+                                            <img src="<?= base_url('assets/img/nonlsp/' . $mahasiswa['nonlsp']); ?>" alt="nonlsp" class="w-50">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php else: ?>
+                            belum diupload
+                        <?php endif; ?>
+                            
+                    </div>
+                </div>
             </div>
         </div>
     </div>

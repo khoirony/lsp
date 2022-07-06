@@ -116,7 +116,46 @@
                 <?php elseif($profesi['status'] == 0): ?>
                     <span class="display-1"><i class="fas fa-spinner text-primary"></i></span>
                 <?php endif; ?>
-                    
+                <br><br>
+
+                <div class="row justify-content-center mt-5">
+                    <div class="col-4">
+                        Foto KTP<br>
+                        <?php if($profesi['image'] != null){ 
+                            ?>
+                            <img src="<?= base_url('assets/img/profesi/' . $profesi['image']); ?>" class="w-50" alt="image" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body mx-auto">
+                                        <img src="<?= base_url('assets/img/profesi/' . $profesi['image']); ?>" alt="image" class="w-50">
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php
+                        }else{
+                            echo "belum diupload";
+                        }
+                        ?>
+                    </div>
+                    <div class="col-4">
+                        APL 01 dan APL 02<br>
+                        <?php if($profesi['berkas'] != null){ 
+                            ?>
+                            <a href="<?= base_url('assets/berkas/' . $profesi['berkas']); ?>"><i class="fas fa-file-pdf display-3"></i></a>
+                        <?php
+                        }else{
+                            echo "belum diupload";
+                        }
+                        ?>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

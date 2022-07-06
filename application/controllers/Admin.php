@@ -58,6 +58,7 @@ class Admin extends CI_Controller
 		$user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['user'] = $user;
 		$data['kompetensi'] = $this->db->get_where('kompetensi', ['id_user' => $id])->row_array();
+        $data['mahasiswa'] = $this->db->get_where('user', ['id_user' => $id])->row_array();
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -173,7 +174,7 @@ class Admin extends CI_Controller
         $this->db->set($data);
         $this->db->where('id_user', $id);
         $this->db->update('kompetensi');
-        redirect('Admin/kompetensi');
+        redirect('Admin/lihatkompetensi/'.$id);
     }
 
 	public function batalkompetensi($id)
@@ -185,7 +186,7 @@ class Admin extends CI_Controller
         $this->db->set($data);
         $this->db->where('id_user', $id);
         $this->db->update('kompetensi');
-        redirect('Admin/kompetensi');
+        redirect('Admin/lihatkompetensi/'.$id);
     }
 
 	public function profesi()
@@ -218,6 +219,7 @@ class Admin extends CI_Controller
 		$user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['user'] = $user;
 		$data['profesi'] = $this->db->get_where('profesi', ['id_user' => $id])->row_array();
+        $data['mahasiswa'] = $this->db->get_where('user', ['id_user' => $id])->row_array();
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -333,7 +335,7 @@ class Admin extends CI_Controller
         $this->db->set($data);
         $this->db->where('id_user', $id);
         $this->db->update('profesi');
-        redirect('Admin/profesi');
+        redirect('Admin/lihatprofesi/'.$id);
     }
 
 	public function batalprofesi($id)
@@ -345,7 +347,7 @@ class Admin extends CI_Controller
         $this->db->set($data);
         $this->db->where('id_user', $id);
         $this->db->update('profesi');
-        redirect('Admin/profesi');
+        redirect('Admin/lihatprofesi/'.$id);
     }
 
     public function jurusan()

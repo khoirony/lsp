@@ -203,6 +203,27 @@
                             : <?= $user['semester'];?>
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <div class="col-4">
+                            Sertifikat Non-LSP
+                        </div>
+                        <div class="col-8">
+                            <img src="<?= base_url('assets/img/nonlsp/' . $user['nonlsp']); ?>" class="w-25" alt="nonlsp" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content text-center">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body mx-auto">
+                                <img src="<?= base_url('assets/img/nonlsp/' . $user['nonlsp']); ?>" alt="nonlsp" class="w-50">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
     
