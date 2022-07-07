@@ -9,6 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <link rel="icon" type="image/x-icon" href="<?= base_url('assets/img/favicon.ico');?>">
+
     <title><?= $title; ?></title>
 
     <!-- <script src="https://kit.fontawesome.com/c12c059ff2.js" crossorigin="anonymous"></script> -->

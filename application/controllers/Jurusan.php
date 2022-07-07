@@ -21,8 +21,8 @@ class Jurusan extends CI_Controller
 		$user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['user'] = $user;
 
-		$data['hitungkompetensi'] = $this->db->get('kompetensi')->num_rows();
-        $data['hitungprofesi'] = $this->db->get('profesi')->num_rows();
+		$data['hitungkompetensi'] = $this->db->get_where('kompetensi', ['jurusan' => $user['nama']])->num_rows();
+        $data['hitungprofesi'] = $this->db->get_where('profesi', ['jurusan' => $user['nama']])->num_rows();
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
