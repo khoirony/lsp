@@ -21,6 +21,9 @@ class Jurusan extends CI_Controller
 		$user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['user'] = $user;
 
+		$data['hitungkompetensi'] = $this->db->get('kompetensi')->num_rows();
+        $data['hitungprofesi'] = $this->db->get('profesi')->num_rows();
+
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
 		$this->load->view('templates/topbar', $data);
@@ -44,6 +47,26 @@ class Jurusan extends CI_Controller
 		$this->load->view('templates/sidebar', $data);
 		$this->load->view('templates/topbar', $data);
         $this->load->view('jurusan/kompetensi', $data);
+		$this->load->view('templates/footer', $data);
+    }
+
+	public function lihatkompetensi($id)
+    {
+		if($this->session->userdata('role') == NULL){
+            redirect('auth');
+        }
+
+        $data['title'] = 'Lihat Peserta Kompetensi';
+		$data['active'] = 'kompetensi';
+		$user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $user;
+		$data['kompetensi'] = $this->db->get_where('kompetensi', ['id_user' => $id])->row_array();
+        $data['mahasiswa'] = $this->db->get_where('user', ['id_user' => $id])->row_array();
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/topbar', $data);
+        $this->load->view('jurusan/lihatkompetensi', $data);
 		$this->load->view('templates/footer', $data);
     }
 
@@ -86,6 +109,26 @@ class Jurusan extends CI_Controller
 		$this->load->view('templates/sidebar', $data);
 		$this->load->view('templates/topbar', $data);
         $this->load->view('jurusan/profesi', $data);
+		$this->load->view('templates/footer', $data);
+    }
+
+	public function lihatprofesi($id)
+    {
+		if($this->session->userdata('role') == NULL){
+            redirect('auth');
+        }
+
+        $data['title'] = 'Lihat Peserta Profesi';
+		$data['active'] = 'profesi';
+		$user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $user;
+		$data['profesi'] = $this->db->get_where('profesi', ['id_user' => $id])->row_array();
+        $data['mahasiswa'] = $this->db->get_where('user', ['id_user' => $id])->row_array();
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/topbar', $data);
+        $this->load->view('jurusan/lihatprofesi', $data);
 		$this->load->view('templates/footer', $data);
     }
 

@@ -21,6 +21,9 @@ class Admin extends CI_Controller
 		$user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['user'] = $user;
 
+        $data['hitungkompetensi'] = $this->db->get('kompetensi')->num_rows();
+        $data['hitungprofesi'] = $this->db->get('profesi')->num_rows();
+
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
 		$this->load->view('templates/topbar', $data);
@@ -163,6 +166,43 @@ class Admin extends CI_Controller
 		$this->load->view('templates/topbar', $data);
         $this->load->view('admin/cari/kompetensi', $data);
 		$this->load->view('templates/footer', $data);
+    }
+
+    public function pengumumankompetensi($id)
+    {
+        $data = [
+            'pengumuman' => htmlspecialchars($this->input->post('pengumuman', true)),
+        ];
+
+        $this->db->set($data);
+        $this->db->where('id_user', $id);
+        $this->db->update('kompetensi');
+        redirect('Admin/lihatkompetensi/'.$id);
+    }
+
+    public function sertifikatkompetensi($id)
+    {
+        $config['upload_path'] = './assets/berkas/';
+        $config['allowed_types'] = 'pdf|csv';
+        $config['max_size'] = 10000;
+        
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        
+        if ( ! $this->upload->do_upload('berkas')){
+            echo $this->upload->display_errors();
+        }else{
+            $berkas = $this->upload->data();
+        }
+
+        $data = [
+            'sertifikat' => $berkas['file_name'],
+        ];
+
+        $this->db->set($data);
+        $this->db->where('id_user', $id);
+        $this->db->update('kompetensi');
+        redirect('Admin/lihatkompetensi/'.$id);
     }
 
 	public function setujukompetensi($id)
@@ -324,6 +364,43 @@ class Admin extends CI_Controller
 		$this->load->view('templates/topbar', $data);
         $this->load->view('admin/cari/profesi', $data);
 		$this->load->view('templates/footer', $data);
+    }
+
+    public function sertifikatprofesi($id)
+    {
+        $config['upload_path'] = './assets/berkas/';
+        $config['allowed_types'] = 'pdf|csv';
+        $config['max_size'] = 10000;
+        
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        
+        if ( ! $this->upload->do_upload('berkas')){
+            echo $this->upload->display_errors();
+        }else{
+            $berkas = $this->upload->data();
+        }
+
+        $data = [
+            'sertifikat' => $berkas['file_name'],
+        ];
+
+        $this->db->set($data);
+        $this->db->where('id_user', $id);
+        $this->db->update('profesi');
+        redirect('Admin/lihatprofesi/'.$id);
+    }
+
+    public function pengumumanprofesi($id)
+    {
+        $data = [
+            'pengumuman' => htmlspecialchars($this->input->post('pengumuman', true)),
+        ];
+
+        $this->db->set($data);
+        $this->db->where('id_user', $id);
+        $this->db->update('profesi');
+        redirect('Admin/lihatprofesi/'.$id);
     }
 
 	public function setujuprofesi($id)

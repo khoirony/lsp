@@ -140,7 +140,7 @@
                             </div>
                         <?php
                         }else{
-                            echo "belum diupload";
+                            echo "<br><br>-belum diupload-";
                         }
                         ?>
                         

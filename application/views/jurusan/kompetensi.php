@@ -32,6 +32,7 @@
 					<th scope="col">Prodi</th>
 					<th scope="col">Skema</th>
                     <th scope="col">status</th>
+					<th scope="col">aksi</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -55,6 +56,9 @@
 						<?php elseif($kom['status'] == 2): ?>
 							<span class="badge bg-danger">canceled</span>
 						<?php endif; ?>
+                    </td>
+					<td class="text-center" style="width:90px;">
+						<a href="<?= base_url('Jurusan/lihatkompetensi/' . $kom['id_user']); ?>"><i class="fas fa-eye btn-sm btn-primary"></i></a>
                     </td>
 				</tr>
 				<?php

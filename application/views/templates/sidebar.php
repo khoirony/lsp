@@ -10,14 +10,12 @@
         	<!-- Divider -->
         	<hr class="sidebar-divider">
 
-
-        	<li class="nav-item <?php if($active == 'dashboard'){ echo'active';}?>">
-        		<a class="nav-link pb-0" href="<?= base_url('mahasiswa') ?>">
+			<?php if($user['role'] == 1): ?>
+			<li class="nav-item <?php if($active == 'dashboard'){ echo'active';}?>">
+        		<a class="nav-link pb-0" href="<?= base_url('admin') ?>">
 					<i class="fas fa-fw fa-tachometer-alt"></i>
         			<span>Dashboard</a>
         	</li>
-
-			<?php if($user['role'] == 1): ?>
 			<div class="sidebar-heading mt-3">
                 Menu Admin
             </div>
@@ -39,6 +37,11 @@
             <?php endif; ?>
 
 			<?php if($user['role'] == 2): ?>
+			<li class="nav-item <?php if($active == 'dashboard'){ echo'active';}?>">
+        		<a class="nav-link pb-0" href="<?= base_url('jurusan') ?>">
+					<i class="fas fa-fw fa-tachometer-alt"></i>
+        			<span>Dashboard</a>
+        	</li>
 			<div class="sidebar-heading mt-3">
                 Menu Jurusan
             </div>
@@ -55,6 +58,11 @@
             <?php endif; ?>
 
             <?php if($user['role'] == 3): ?>
+			<li class="nav-item <?php if($active == 'dashboard'){ echo'active';}?>">
+        		<a class="nav-link pb-0" href="<?= base_url('mahasiswa') ?>">
+					<i class="fas fa-fw fa-tachometer-alt"></i>
+        			<span>Dashboard</a>
+        	</li>
 			<div class="sidebar-heading mt-3">
                 Pendaftaran Sertifikasi
             </div>

@@ -2,8 +2,58 @@
 <div class="container-fluid">
 
 	<!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800"><i class="fas fa-fw fa-tasks"></i> <?= $title; ?><a href="<?= base_url('admin/editprofesi/'.$profesi['id_user']);?>" class="pb-2"><span class="badge bg-primary fs-6 ms-2">Edit</span></a> <a href="<?= base_url('Admin/setujuprofesi/' . $profesi['id_user']); ?>"><span class="badge bg-success fs-6">Setujui</span></a> <a href="<?= base_url('Admin/batalprofesi/' . $profesi['id_user']); ?>"><span class="badge bg-danger fs-6">Tolak</span></a></h1>
+    <h1 class="h3 mb-4 text-gray-800"><i class="fas fa-fw fa-tasks"></i> <?= $title; ?> 
+    <a data-bs-toggle="modal" href="#pengumuman" class="pb-2"><span class="badge bg-warning fs-6">Pengumuman</span></a> 
+    <a data-bs-toggle="modal" href="#sertifikat" class="pb-2"><span class="badge bg-warning fs-6">Sertifikat</span></a> 
+    <a href="<?= base_url('admin/editprofesi/'.$profesi['id_user']);?>" class="pb-2"><span class="badge bg-primary fs-6">Edit</span></a> 
+    <a href="<?= base_url('Admin/setujuprofesi/' . $profesi['id_user']); ?>"><span class="badge bg-success fs-6">Setujui</span></a> 
+    <a href="<?= base_url('Admin/batalprofesi/' . $profesi['id_user']); ?>"><span class="badge bg-danger fs-6">Tolak</span></a></h1>
         
+    <!-- Modal Pengumuman -->
+    <div class="modal fade" id="pengumuman" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Pengumuman Jadwal Tes</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="<?= base_url('admin/pengumumanprofesi/'.$profesi['id_user']);?>" method="post">
+            <div class="modal-body">
+                <div class="form-floating">
+                    <textarea class="form-control" name="pengumuman" id="pengumuman">Jadwal test Sertikom DIKSI Kemendikbud anda akan dilaksanakan pada tanggal 1 Juli 2022</textarea>
+                    <label for="floatingTextarea">Masukkan Pengumuman Tes</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary btn-user px-3">Send</button>
+            </div>
+        </form>
+        </div>
+    </div>
+    </div>
+
+    <!-- Modal Sertifikat -->
+    <div class="modal fade" id="sertifikat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Upload Sertifikat Peserta</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="<?= base_url('admin/sertifikatprofesi/'.$profesi['id_user']);?>" method="post" enctype="multipart/form-data">
+            <div class="modal-body">
+                <div class="mb-3">
+                    <input type="file" class="form-control" name="berkas" id="berkas" placeholder="pdf/csv">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary btn-user px-3">Upload</button>
+            </div>
+        </form>
+        </div>
+    </div>
+    </div>
+
     <div class="row">
         <div class="col">
             <div class="container bg-white py-4 mb-3">
@@ -139,7 +189,7 @@
                             </div>
                         <?php
                         }else{
-                            echo "belum diupload";
+                            echo "<br>-belum diupload-";
                         }
                         ?>
                     </div>
@@ -150,7 +200,7 @@
                             <a href="<?= base_url('assets/berkas/' . $profesi['berkas']); ?>"><i class="fas fa-file-pdf display-3"></i></a>
                         <?php
                         }else{
-                            echo "belum diupload";
+                            echo "<br>-belum diupload-";
                         }
                         ?>
                     </div>
@@ -173,7 +223,8 @@
                                 </div>
                             </div>
                         <?php else: ?>
-                            belum diupload
+                            <br>
+                            -belum diupload-
                         <?php endif; ?>
                             
                     </div>

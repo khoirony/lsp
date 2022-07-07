@@ -20,6 +20,10 @@ class Mahasiswa extends CI_Controller
 		$data['active'] = 'dashboard';
 		$user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['user'] = $user;
+        $data['kompetensi'] = $this->db->get_where('kompetensi', ['id_user' => $user['id_user']])->row_array();
+        $data['hitungkompetensi'] = $this->db->get_where('kompetensi', ['id_user' => $user['id_user']])->num_rows();
+        $data['profesi'] = $this->db->get_where('profesi', ['id_user' => $user['id_user']])->row_array();
+        $data['hitungprofesi'] = $this->db->get_where('profesi', ['id_user' => $user['id_user']])->num_rows();
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -56,28 +60,31 @@ class Mahasiswa extends CI_Controller
             $this->load->view('mahasiswa/profile', $data);    
 			$this->load->view('templates/footer', $data);
         } else {
-            $config['upload_path'] = './assets/img/nonlsp/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = 10000;
-        
-            $this->load->library('upload', $config);
-            $this->upload->initialize($config);
-        
-            if ( ! $this->upload->do_upload('image')){
-                echo $this->upload->display_errors();
-            }else{
-                $old_image = $data['user']['nonlsp'];
-                if ($old_image != NULL) {
-                    unlink(FCPATH . './assets/img/nonlsp/' . $old_image);
-                }
-                $image = $this->upload->data();
+            $upload_image = $_FILES['image']['name'];
+            if ($upload_image) {
+                $config['upload_path'] = './assets/img/nonlsp/';
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size'] = 10000;
+            
+                $this->load->library('upload', $config);
+                $this->upload->initialize($config);
+            
+                if ( ! $this->upload->do_upload('image')){
+                    echo $this->upload->display_errors();
+                }else{
+                    $old_image = $data['user']['nonlsp'];
+                    if ($old_image != NULL) {
+                        unlink(FCPATH . './assets/img/nonlsp/' . $old_image);
+                    }
+                    $image = $this->upload->data();
 
-                $data = [
-                    'nonlsp' => $image['file_name'],
-                ];
-                $this->db->set($data);
-                $this->db->where('id_user', $user['id_user']);
-                $this->db->update('user');
+                    $data = [
+                        'nonlsp' => $image['file_name'],
+                    ];
+                    $this->db->set($data);
+                    $this->db->where('id_user', $user['id_user']);
+                    $this->db->update('user');
+                }
             }
             $data = [
                 'nik' => htmlspecialchars($this->input->post('nik', true)),
@@ -138,17 +145,23 @@ class Mahasiswa extends CI_Controller
             }
 			$this->load->view('templates/footer', $data);
         } else {
-            $config['upload_path'] = './assets/img/kompetensi/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = 10000;
-    
-            $this->load->library('upload', $config);
-    
-            if ( ! $this->upload->do_upload('image')){
-                echo $this->upload->display_errors();
+            $upload_image = $_FILES['image']['name'];
+            if ($upload_image) {
+                $config['upload_path'] = './assets/img/kompetensi/';
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size'] = 10000;
+        
+                $this->load->library('upload', $config);
+        
+                if ( ! $this->upload->do_upload('image')){
+                    echo $this->upload->display_errors();
+                }else{
+                    $image = $this->upload->data('file_name');
+                }
             }else{
-                $image = $this->upload->data();
+                $image = "";
             }
+
             $data = [
                 'email' => $user['email'],
                 'nama' => $user['nama'],
@@ -163,7 +176,7 @@ class Mahasiswa extends CI_Controller
                 'prodi' => $user['prodi'],
                 'semester' => $user['semester'],
                 'skema' => htmlspecialchars($this->input->post('skema', true)),
-                'image' => $image['file_name'],
+                'image' => $image,
 				'id_user' => $user['id_user']
             ];
             $this->db->insert('kompetensi', $data);
@@ -192,24 +205,30 @@ class Mahasiswa extends CI_Controller
             $this->load->view('mahasiswa/editkompetensi', $data);
 			$this->load->view('templates/footer', $data);
         } else {
-            $config['upload_path'] = './assets/img/kompetensi/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = 10000;
-    
-            $this->load->library('upload', $config);
-    
-            if ( ! $this->upload->do_upload('image')){
-                echo $this->upload->display_errors();
-            }else{
-                $old_image = $data['kompetensi']['image'];
-                if ($old_image != NULL) {
-                    unlink(FCPATH . './assets/img/kompetensi/' . $old_image);
+            $upload_image = $_FILES['image']['name'];
+            if ($upload_image) {
+                $config['upload_path'] = './assets/img/kompetensi/';
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size'] = 10000;
+        
+                $this->load->library('upload', $config);
+        
+                if ( ! $this->upload->do_upload('image')){
+                    echo $this->upload->display_errors();
+                }else{
+                    $old_image = $data['kompetensi']['image'];
+                    if ($old_image != NULL) {
+                        unlink(FCPATH . './assets/img/kompetensi/' . $old_image);
+                    }
+                    $image = $this->upload->data('file_name');
                 }
-                $image = $this->upload->data();
+            }else{
+                $image = "";
             }
+
             $data = [
                 'skema' => htmlspecialchars($this->input->post('skema', true)),
-                'image' => $image['file_name'],
+                'image' => $image,
                 'status' => 0,
 				'id_user' => $user['id_user']
             ];
@@ -251,30 +270,40 @@ class Mahasiswa extends CI_Controller
             }
             $this->load->view('templates/footer', $data);
         } else {
-            $config['upload_path'] = './assets/berkas/';
-            $config['allowed_types'] = 'pdf|csv';
-            $config['max_size'] = 10000;
-        
-            $this->load->library('upload', $config);
-            $this->upload->initialize($config);
-        
-            if ( ! $this->upload->do_upload('berkas')){
-                echo $this->upload->display_errors();
+            $upload_berkas = $_FILES['berkas']['name'];
+            if ($upload_berkas) {
+                $config['upload_path'] = './assets/berkas/';
+                $config['allowed_types'] = 'pdf|csv';
+                $config['max_size'] = 10000;
+            
+                $this->load->library('upload', $config);
+                $this->upload->initialize($config);
+            
+                if ( ! $this->upload->do_upload('berkas')){
+                    echo $this->upload->display_errors();
+                }else{
+                    $berkas = $this->upload->data('file_name');
+                }
             }else{
-                $berkas = $this->upload->data();
+                $berkas = "";
             }
             
-            $config['upload_path'] = './assets/img/profesi/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = 10000;
-        
-            $this->load->library('upload', $config);
-            $this->upload->initialize($config);
-        
-            if ( ! $this->upload->do_upload('image')){
-                echo $this->upload->display_errors();
+            $upload_image = $_FILES['image']['name'];
+            if ($upload_image) {
+                $config['upload_path'] = './assets/img/profesi/';
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size'] = 10000;
+            
+                $this->load->library('upload', $config);
+                $this->upload->initialize($config);
+            
+                if ( ! $this->upload->do_upload('image')){
+                    echo $this->upload->display_errors();
+                }else{
+                    $image = $this->upload->data('file_name');
+                }
             }else{
-                $image = $this->upload->data();
+                $image = "";
             }
 
             $data = [
@@ -291,8 +320,8 @@ class Mahasiswa extends CI_Controller
                 'prodi' => $user['prodi'],
                 'semester' => $user['semester'],
                 'skema' => htmlspecialchars($this->input->post('skema', true)),
-                'image' => $image['file_name'],
-                'berkas' => $berkas['file_name'],
+                'image' => $image,
+                'berkas' => $berkas,
                 'id_user' => $user['id_user']
             ];
 
@@ -322,44 +351,55 @@ class Mahasiswa extends CI_Controller
             $this->load->view('mahasiswa/editprofesi', $data);
 			$this->load->view('templates/footer', $data);
         } else {
-            $config['upload_path'] = './assets/berkas/';
-            $config['allowed_types'] = 'pdf|csv';
-            $config['max_size'] = 10000;
-        
-            $this->load->library('upload', $config);
-            $this->upload->initialize($config);
-        
-            if ( ! $this->upload->do_upload('berkas')){
-                echo $this->upload->display_errors();
-            }else{
-                $old_berkas = $data['profesi']['berkas'];
-                if ($old_berkas != NULL) {
-                    unlink(FCPATH . './assets/berkas/' . $old_berkas);
+            $upload_berkas = $_FILES['berkas']['name'];
+            if ($upload_berkas) {
+                $config['upload_path'] = './assets/berkas/';
+                $config['allowed_types'] = 'pdf|csv';
+                $config['max_size'] = 10000;
+            
+                $this->load->library('upload', $config);
+                $this->upload->initialize($config);
+            
+                if ( ! $this->upload->do_upload('berkas')){
+                    echo $this->upload->display_errors();
+                }else{
+                    $old_berkas = $data['profesi']['berkas'];
+                    if ($old_berkas != NULL) {
+                        unlink(FCPATH . './assets/berkas/' . $old_berkas);
+                    }
+                    $berkas = $this->upload->data('file_name');
                 }
-                $berkas = $this->upload->data();
+            }else{
+                $berkas = "";
             }
             
-            $config['upload_path'] = './assets/img/profesi/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = 10000;
-        
-            $this->load->library('upload', $config);
-            $this->upload->initialize($config);
-        
-            if ( ! $this->upload->do_upload('image')){
-                echo $this->upload->display_errors();
-            }else{
-                $old_image = $data['profesi']['image'];
-                if ($old_image != NULL) {
-                    unlink(FCPATH . './assets/img/profesi/' . $old_image);
+            $upload_image = $_FILES['image']['name'];
+            if ($upload_image) {
+                $config['upload_path'] = './assets/img/profesi/';
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size'] = 10000;
+            
+                $this->load->library('upload', $config);
+                $this->upload->initialize($config);
+            
+                if ( ! $this->upload->do_upload('image')){
+                    echo $this->upload->display_errors();
+                }else{
+                    $old_image = $data['profesi']['image'];
+                    if ($old_image != NULL) {
+                        unlink(FCPATH . './assets/img/profesi/' . $old_image);
+                    }
+                    $image = $this->upload->data('file_name');
                 }
-                $image = $this->upload->data();
+            }else{
+                $image = "";
             }
+
             $data = [
                 'skema' => htmlspecialchars($this->input->post('skema', true)),
                 'status' => 0,
-                'image' => $image['file_name'],
-                'berkas' => $berkas['file_name'],
+                'image' => $image,
+                'berkas' => $berkas,
 				'id_user' => $user['id_user']
             ];
             $this->db->set($data);
@@ -380,6 +420,11 @@ class Mahasiswa extends CI_Controller
 		$data['active'] = 'pengumuman';
 		$user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['user'] = $user;
+
+        $data['kompetensi'] = $this->db->get_where('kompetensi', ['id_user' => $user['id_user']])->row_array();
+        $data['profesi'] = $this->db->get_where('profesi', ['id_user' => $user['id_user']])->row_array();
+        $data['hitungkompetensi'] = $this->db->get_where('kompetensi', ['id_user' => $user['id_user']])->num_rows();
+        $data['hitungprofesi'] = $this->db->get_where('profesi', ['id_user' => $user['id_user']])->num_rows();
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);

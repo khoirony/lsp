@@ -2,13 +2,7 @@
 <div class="container-fluid">
 
 	<!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800"><i class="fas fa-fw fa-tasks"></i> <?= $title; ?> 
-    <a data-bs-toggle="modal" href="#pengumuman" class="pb-2"><span class="badge bg-warning fs-6">Pengumuman</span></a> 
-    <a data-bs-toggle="modal" href="#sertifikat" class="pb-2"><span class="badge bg-warning fs-6">Sertifikat</span></a>
-    <a href="<?= base_url('admin/editkompetensi/'.$kompetensi['id_user']);?>" class="pb-2"><span class="badge bg-primary fs-6">Edit</span></a> 
-    <a href="<?= base_url('Admin/setujukompetensi/' . $kompetensi['id_user']); ?>"><span class="badge bg-success fs-6">Setujui</span></a> 
-    <a href="<?= base_url('Admin/batalkompetensi/' . $kompetensi['id_user']); ?>"><span class="badge bg-danger fs-6">Tolak</span></a>
-    </h1> 
+    <h1 class="h3 mb-4 text-gray-800"><i class="fas fa-fw fa-tasks"></i> <?= $title; ?></h1> 
         
     <!-- Modal Pengumuman -->
     <div class="modal fade" id="pengumuman" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

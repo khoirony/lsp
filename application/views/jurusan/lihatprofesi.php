@@ -2,8 +2,52 @@
 <div class="container-fluid">
 
 	<!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800"><i class="fas fa-fw fa-tasks"></i> <?= $title; ?><a href="<?= base_url('mahasiswa/editprofesi/'.$profesi['id_profesi']);?>" class="pb-2"><span class="badge bg-primary fs-6 ms-2">Edit</span></a></h1>
+    <h1 class="h3 mb-4 text-gray-800"><i class="fas fa-fw fa-tasks"></i> <?= $title; ?></h1>
         
+    <!-- Modal Pengumuman -->
+    <div class="modal fade" id="pengumuman" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Pengumuman Jadwal Tes</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="<?= base_url('admin/pengumumanprofesi/'.$profesi['id_user']);?>" method="post">
+            <div class="modal-body">
+                <div class="form-floating">
+                    <textarea class="form-control" name="pengumuman" id="pengumuman">Jadwal test Sertikom DIKSI Kemendikbud anda akan dilaksanakan pada tanggal 1 Juli 2022</textarea>
+                    <label for="floatingTextarea">Masukkan Pengumuman Tes</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary btn-user px-3">Send</button>
+            </div>
+        </form>
+        </div>
+    </div>
+    </div>
+
+    <!-- Modal Sertifikat -->
+    <div class="modal fade" id="sertifikat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Upload Sertifikat Peserta</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="<?= base_url('admin/sertifikatprofesi/'.$profesi['id_user']);?>" method="post" enctype="multipart/form-data">
+            <div class="modal-body">
+                <div class="mb-3">
+                    <input type="file" class="form-control" name="berkas" id="berkas" placeholder="pdf/csv">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary btn-user px-3">Upload</button>
+            </div>
+        </form>
+        </div>
+    </div>
+    </div>
 
     <div class="row">
         <div class="col">
@@ -120,7 +164,7 @@
 
                 <div class="row justify-content-center mt-5">
                     <div class="col-4">
-                        Foto KTP<br>
+                        Foto KTP<br><br>
                         <?php if($profesi['image'] != null){ 
                             ?>
                             <img src="<?= base_url('assets/img/profesi/' . $profesi['image']); ?>" class="w-50" alt="image" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -140,7 +184,7 @@
                             </div>
                         <?php
                         }else{
-                            echo "<br><br>-belum diupload-";
+                            echo "<br>-belum diupload-";
                         }
                         ?>
                     </div>
@@ -154,6 +198,30 @@
                             echo "<br>-belum diupload-";
                         }
                         ?>
+                    </div>
+                    <div class="col-4">
+                        Sertifikasi Non-LSP<br>
+                        <?php if($mahasiswa['nonlsp'] != null):?>
+                            <img src="<?= base_url('assets/img/nonlsp/' . $mahasiswa['nonlsp']); ?>" class="w-50" alt="nonlsp" type="button" data-bs-toggle="modal" data-bs-target="#nonlsp">
+    
+                            <!-- Modal -->
+                            <div class="modal fade" id="nonlsp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body mx-auto">
+                                            <img src="<?= base_url('assets/img/nonlsp/' . $mahasiswa['nonlsp']); ?>" alt="nonlsp" class="w-50">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php else: ?>
+                            <br>
+                            -belum diupload-
+                        <?php endif; ?>
+                            
                     </div>
                 </div>
             </div>
